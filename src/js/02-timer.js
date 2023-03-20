@@ -41,15 +41,12 @@ const options = {
     if (selectedDates[0] < new Date()) {
       btnStart.disabled = true;
       //   alert('Please choose a date in the future');
-      Notiflix.Report.failure(
-        'УПС!',
-        'Оберіть майбутню дату зникнення русні!',
-        'Обрати іншу дату',
-        // чомусь таймаут не працює :((((
-        {
-          timeout: 3000,
+      Notiflix.Notify.success('Оберіть майбутню дату зникнення русні!', {
+        timeout: 1000,
+        success: {
+          background: '#ff5549',
         },
-      );
+      });
       return;
     }
     // якщо дата майбутня, то кнопку активуємо і виносимо
