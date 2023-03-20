@@ -3,6 +3,8 @@
 import flatpickr from 'flatpickr';
 // Додатковий імпорт стилів flatpickr
 import 'flatpickr/dist/flatpickr.min.css';
+// підключаємо вікно-вспливачку
+import Notiflix from 'notiflix';
 
 // ----------ЕЛЕМЕНТИ---------- //
 // створюємо елементи
@@ -38,7 +40,17 @@ const options = {
     // якщо дата раніше, то кнопку деактивуємо, виводимо повідомлення
     if (selectedDates[0] < new Date()) {
       btnStart.disabled = true;
-      alert('Please choose a date in the future');
+      //   alert('Please choose a date in the future');
+      Notiflix.Report.failure(
+        'УПС!',
+        'Оберіть майбутню дату зникнення русні!',
+        'Обрати іншу дату',
+        // чомусь таймаут не працює :((((
+        {
+          timeout: 3000,
+        },
+      );
+      return;
     }
     // якщо дата майбутня, то кнопку активуємо і виносимо
     // значення лічильника в глобальну змінну
